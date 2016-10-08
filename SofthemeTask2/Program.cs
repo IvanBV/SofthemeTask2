@@ -15,7 +15,6 @@ namespace SofthemeTask2
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            DateTime now = DateTime.UtcNow;
             primes = GeneratePrimes(MaxNumber);
             int circularCount = 0;
             for (int i = 0; i < primes.Length; i++)
@@ -27,15 +26,13 @@ namespace SofthemeTask2
                 }
             }
             Console.WriteLine("Total circular primes: {0}", circularCount);
-            Console.WriteLine((long) (DateTime.UtcNow - now).TotalMilliseconds);
-
             Console.ReadLine();
         }
 
         /// <summary>
         /// Generates all prime numbers from 1 to max limit
         /// </summary>
-        /// <param name="max">Maximumu number</param>
+        /// <param name="max">Maximum number</param>
         /// <returns>Array of prime numbers</returns>
         public static int[] GeneratePrimes(int max)
         {
@@ -73,7 +70,7 @@ namespace SofthemeTask2
         /// <returns>Boolean result</returns>
         private static bool CheckCircularPrime(int num)
         {
-            int length = (int) Math.Log10(num) + 1;
+            int length = (int) Math.Floor(Math.Log10(num)) + 1;
             for (int i = 0; i < length - 1; i++)
             {
                 num = num%10 * (int) Math.Pow(10, length - 1) + num/10; //циклический сдвиг вправо
